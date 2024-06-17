@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option go_package = "genproto/library_service";
+
+package library_service;
+
+import "library_service/common.proto";
+
+service AuthorService {
+  rpc Create (AuthorCreateReq) returns (AuthorRes) {}
+  rpc Get (GetByIdReq) returns (AuthorRes) {}
+  rpc GetAll (AuthorGetAllReq) returns (AuthorGetAllRes) {}
+  rpc Update (AuthorUpdateReq) returns (AuthorRes) {}
+  rpc Delete (GetByIdReq) returns (Void) {}
+}
+
+message Author {
+  string id         = 1;
+  string name       = 2;
+  string biography  = 3;
+  string created_at = 4;
+  string updated_at = 5;
+  string deleted_at = 6;
+}
+
+message AuthorCreateReq {
+  string name       = 1;
+  string biography  = 2;
+}
+
+message AuthorRes {
+  string id         = 1;
+  string name       = 2;
+  string biography  = 3;
+}
+
+message AuthorUpdateReq {
+  GetByIdReq    id             = 1;
+  AuthorCreateReq updateAuthor = 2;
+}
+
+message AuthorGetAllReq {
+  string name       = 1;
+  Filter filter     = 2;
+}
+
+message AuthorGetAllRes {
+  repeated AuthorRes Authors = 1;
+}
+
+

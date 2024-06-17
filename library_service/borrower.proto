@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "genproto/library_service";
+
+package library_service;
+
+import "library_service/common.proto";
+import "library_service/user.proto";
+
+service BorrowerService {
+  rpc Create (BorrowerCreateReq) returns (BorrowerRes) {}
+  rpc Get (GetByIdReq) returns (BorrowerRes) {}
+  rpc GetAll (BorrowerGetAllReq) returns (BorrowerGetAllRes) {}
+  rpc Update (BorrowerUpdateReq) returns (BorrowerRes) {}
+  rpc Delete (GetByIdReq) returns (Void) {}
+}
+
+message Borrower {
+  string id          = 1;
+  string user_id     = 2;
+  string book_id     = 3;
+  string borrow_date = 4;
+  string return_date = 5;
+  string created_at  = 6;
+  string updated_at  = 7;
+  string deleted_at  = 8;
+}
+
+message BorrowerCreateReq {
+  string user_id = 1;
+  string book_id = 2;
+}
+
+message BorrowerRes {
+  string id          = 1;
+  User   user        = 2;
+  string book_id     = 3;
+  string borrow_date = 4;
+  string return_date = 5;
+}
+
+message BorrowerUpdate {
+  string user_id     = 1;
+  string book_id     = 2;
+  string borrow_date = 3;
+  string return_date = 4;
+}
+
+message BorrowerUpdateReq {
+  GetByIdReq    id              = 1;
+  BorrowerUpdate updateBorrower = 2;
+}
+
+message BorrowerGetAllReq {
+  string user_id     = 1;
+  string book_id     = 2;
+  string borrow_date = 3;
+  string return_date = 4;
+  Filter filter      = 5;
+}
+
+message BorrowerGetAllRes {
+  repeated BorrowerRes Borrowers = 1;
+}
+
+

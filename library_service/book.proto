@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "genproto/library_service";
+
+package library_service;
+
+import "library_service/common.proto";
+import "library_service/author.proto";
+import "library_service/genre.proto";
+
+service BookService {
+  rpc Create (BookCreateReq) returns (BookRes) {}
+  rpc Get (GetByIdReq) returns (BookRes) {}
+  rpc GetAll (BookGetAllReq) returns (BookGetAllRes) {}
+  rpc Update (BookUpdateReq) returns (BookRes) {}
+  rpc Delete (GetByIdReq) returns (Void) {}
+  rpc Search (BookSearchReq) returns (BookRes) {}
+}
+
+message Book {
+  string id         = 1;
+  string title      = 2;
+  string author_id  = 3;
+  string genre_id   = 4;
+  string summary    = 5;
+  string created_at = 6;
+  string updated_at = 7;
+  string deleted_at = 8;
+}
+
+message BookCreateReq {
+  string title      = 1;
+  string author_id  = 2;
+  string genre_id   = 3;
+  string summary    = 4;
+}
+
+message BookRes {
+  string id         = 1;
+  string title      = 2;
+  Author author     = 3;
+  Genre  genre      = 4;
+  string summary    = 5;
+}
+
+message BookUpdateReq {
+  GetByIdReq    id         = 1;
+  BookCreateReq updateBook = 2;
+}
+
+message BookGetAllReq {
+  string author_id = 1;
+  string genre_id  = 2;
+  Filter filter    = 3;
+}
+
+message BookGetAllRes {
+  repeated BookRes books = 1;
+}
+
+message BookSearchReq {
+  string title  = 1;
+  string author = 2;
+}
+
+

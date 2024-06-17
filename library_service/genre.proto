@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option go_package = "genproto/library_service";
+
+package library_service;
+
+import "library_service/common.proto";
+
+service GenreService {
+  rpc Create (GenreCreateReq) returns (GenreRes) {}
+  rpc Get (GetByIdReq) returns (GenreRes) {}
+  rpc GetAll (GenreGetAllReq) returns (GenreGetAllRes) {}
+  rpc Update (GenreUpdateReq) returns (GenreRes) {}
+  rpc Delete (GetByIdReq) returns (Void) {}
+}
+
+message Genre {
+  string id         = 1;
+  string name       = 2;
+  string created_at = 3;
+  string updated_at = 4;
+  string deleted_at = 5;
+}
+
+message GenreCreateReq {
+  string name       = 1;
+}
+
+message GenreRes {
+  string id         = 1;
+  string name       = 2;
+}
+
+message GenreUpdateReq {
+  GetByIdReq    id             = 1;
+  GenreCreateReq updateGenre = 2;
+}
+
+message GenreGetAllReq {
+  string name       = 1;
+  Filter filter     = 2;
+}
+
+message GenreGetAllRes {
+  repeated GenreRes Genres = 1;
+}
+
+
