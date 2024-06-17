@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option go_package = "genproto/library_service";
+option go_package = "genproto/";
 
 package library_service;
 
-import "library_service/common.proto";
+import "common.proto";
 
 service UserService {
   rpc Create (UserCreateReq) returns (UserRes) {}
