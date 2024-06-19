@@ -4,7 +4,7 @@ option go_package = "genproto/library_service";
 
 package library_service;
 
-import "library_service/common.proto";
+import "common.proto";
 
 service AuthorService {
   rpc Create (AuthorCreateReq) returns (AuthorRes) {}

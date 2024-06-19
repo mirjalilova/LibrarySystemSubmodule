@@ -4,9 +4,9 @@ option go_package = "genproto/library_service";
 
 package library_service;
 
-import "library_service/common.proto";
-import "library_service/author.proto";
-import "library_service/genre.proto";
+import "common.proto";
+import "author.proto";
+import "genre.proto";
 
 service BookService {
   rpc Create (BookCreateReq) returns (BookRes) {}
@@ -14,7 +14,7 @@ service BookService {
   rpc GetAll (BookGetAllReq) returns (BookGetAllRes) {}
   rpc Update (BookUpdateReq) returns (BookRes) {}
   rpc Delete (GetByIdReq) returns (Void) {}
-  rpc Search (BookSearchReq) returns (BookRes) {}
+  rpc Search (BookSearchReq) returns (BookGetAllRes) {}
 }
 
 message Book {
