@@ -15,6 +15,8 @@ service BorrowerService {
   rpc Update (BorrowerUpdateReq) returns (BorrowerRes) {}
   rpc Delete (GetByIdReq) returns (Void) {}
   rpc GetOverdueBooks (Void) returns (BorrowerGetAllRes) {}
+  rpc GetBorrowedBooks (BorrowedBooksReq) returns (BorrowedBooksRes) {}
+  rpc GetBorrowingHistory (BorrowedBooksReq) returns (BorrowedBooksRes) {}
 }
 
 message Borrower {
@@ -41,6 +43,17 @@ message BorrowerRes {
   string  return_date = 5;
 }
 
+message BorrowedBooksReq {
+  string user_id = 1;
+}
+
+message BorrowedBookRes {
+  BookRes book = 1;
+}
+
+message BorrowedBooksRes {
+  repeated BorrowedBookRes books = 1;
+}
 message BorrowerUpdate {
   string user_id     = 1;
   string book_id     = 2;
