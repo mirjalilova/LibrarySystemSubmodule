@@ -47,12 +47,8 @@ message BorrowedBooksReq {
   string user_id = 1;
 }
 
-message BorrowedBookRes {
-  BookRes book = 1;
-}
-
 message BorrowedBooksRes {
-  repeated BorrowedBookRes books = 1;
+  repeated BookRes books = 1;
 }
 message BorrowerUpdate {
   string user_id     = 1;
